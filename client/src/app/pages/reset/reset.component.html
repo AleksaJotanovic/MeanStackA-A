@@ -1,0 +1,34 @@
+<div class="lg:w-3/12 mt-2 p-10 shadow-lg mx-auto">
+    <h3 class="text-3xl text-center font-semibold py-5">Register</h3>
+    <form [formGroup]="resetForm" class="flex flex-col">
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="password" class="p-2 border border-gray-300" type="password" placeholder="Password">
+
+            @if (resetForm.hasError('required', 'password') && resetForm.controls['password'].dirty) {
+            <span class="text-red-500">*Password is required</span>
+            }
+
+        </div>
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="confirmPassword" class="p-2 border border-gray-300" type="password"
+                placeholder="Confirm password">
+
+            @if (resetForm.hasError('required', 'confirmPassword') && resetForm.controls['confirmPassword'].dirty)
+            {
+            <span class="text-red-500">*Please confirm your password!</span>
+            }
+            @if (resetForm.hasError('confirmPasswordValidator', 'confirmPassword'))
+            {
+            <span class="text-red-500">*Password not matching.</span>
+            }
+
+        </div>
+        <button [disabled]="resetForm.invalid" [class.disabled]="resetForm.invalid" (click)="reset()"
+            class="bg-indigo-500 p-2 rounded mt-3 text-white disabled">Submit</button>
+    </form>
+
+    <div class="flex justify-center mt-5">
+        <span>Already Have Account</span>
+        <a class="text-indigo-600 ml-2 cursor-pointer">Login Here</a>
+    </div>
+</div>
